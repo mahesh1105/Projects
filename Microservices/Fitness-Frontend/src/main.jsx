@@ -1,21 +1,29 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-
+import { BrowserRouter } from 'react-router'
 import { Provider } from 'react-redux'
-import { store } from './store/store'
+import { ThemeProvider, CssBaseline } from '@mui/material'
+import { AuthProvider } from 'react-oauth2-code-pkce'
 
 import App from './App'
-import { BrowserRouter } from 'react-router'
-import { AuthProvider } from 'react-oauth2-code-pkce'
+import { store } from './store/store'
 import { authConfig } from './authConfig'
+import { appTheme } from './theme'
+import './index.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
+
 root.render(
-  <BrowserRouter>
-    <AuthProvider authConfig={authConfig}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </AuthProvider>
-  </BrowserRouter>
+  <React.StrictMode>
+    <BrowserRouter>
+      <AuthProvider authConfig={authConfig}>
+        <Provider store={store}>
+          <ThemeProvider theme={appTheme}>
+            <CssBaseline />
+            <App />
+          </ThemeProvider>
+        </Provider>
+      </AuthProvider>
+    </BrowserRouter>
+  </React.StrictMode>,
 )
