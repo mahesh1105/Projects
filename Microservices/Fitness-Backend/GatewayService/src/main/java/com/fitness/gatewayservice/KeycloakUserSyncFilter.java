@@ -23,7 +23,6 @@ public class KeycloakUserSyncFilter implements WebFilter {
     private final UserService userService;
 
     @Override
-    @NullMarked
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         // We can get the request from the exchange
 
@@ -42,6 +41,7 @@ public class KeycloakUserSyncFilter implements WebFilter {
             return userService.validateUser(userId)
                     .flatMap(exist -> {
                         if(!exist) {
+                            // Register User
                             if(registerRequest != null) {
                                 return userService.registerUser(registerRequest)
                                         .then(Mono.empty());

@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class ActivityService {
@@ -47,11 +50,33 @@ public class ActivityService {
             System.out.println(e.getMessage());
         }
 
-        return new ActivityResponse(savedActivity);
+        return mapToResponse(savedActivity);
     }
 
-    public ActivityResponse getActivity(String id) {
-        Activity activity = activityRepository.findById(id).orElseThrow(() -> new RuntimeException("Activity doesn't exists"));
-        return new ActivityResponse(activity);
+    private ActivityResponse mapToResponse(Activity activity){
+        ActivityResponse response = new ActivityResponse();
+        response.setId(activity.getId());
+        response.setUserId(activity.getUserId());
+        response.setType(activity.getType());
+        response.setDuration(activity.getDuration());
+        response.setCaloriesBurned(activity.getCaloriesBurned());
+        response.setStartTime(activity.getStartTime());
+        response.setAdditionalMetrics(activity.getAdditionalMetrics());
+        response.setCreatedAt(activity.getCreatedAt());
+        response.setUpdatedAt(activity.getUpdatedAt());
+        return response;
+    }
+
+    public List<ActivityResponse> getUserActivities(String userId) {
+        List<Activity> activities = activityRepository.findByUserId(userId);
+        return activities.stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
+    }
+
+    public ActivityResponse getActivityById(String activityId) {
+        return activityRepository.findById(activityId)
+                .map(this::mapToResponse)
+                .orElseThrow(() -> new RuntimeException("Activity not found with id: " + activityId));
     }
 }

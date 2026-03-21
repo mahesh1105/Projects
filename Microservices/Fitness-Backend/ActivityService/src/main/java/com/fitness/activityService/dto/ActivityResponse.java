@@ -2,12 +2,15 @@ package com.fitness.activityService.dto;
 
 import com.fitness.activityService.model.Activity;
 import com.fitness.activityService.model.ActivityType;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.Map;
 
 @Data
+@NoArgsConstructor
 public class ActivityResponse {
     private String id;
     private String userId;
@@ -18,16 +21,4 @@ public class ActivityResponse {
     private Map<String, Object> additionalMetrics;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
-    public ActivityResponse(Activity activity) {
-        this.id = activity.getId();
-        this.userId = activity.getUserId();
-        this.type = activity.getType();
-        this.duration = activity.getDuration();
-        this.caloriesBurned = activity.getCaloriesBurned();
-        this.startTime = activity.getStartTime();
-        this.additionalMetrics = activity.getAdditionalMetrics();
-        this.createdAt = activity.getCreatedAt();
-        this.updatedAt = activity.getUpdatedAt();
-    }
 }
