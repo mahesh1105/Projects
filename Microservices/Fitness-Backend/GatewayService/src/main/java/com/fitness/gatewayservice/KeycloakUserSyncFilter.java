@@ -1,17 +1,18 @@
 package com.fitness.gatewayservice;
 
-import com.fitness.gatewayservice.user.UserRequest;
-import com.fitness.gatewayservice.user.UserService;
-import com.nimbusds.jwt.JWTClaimsSet;
-import com.nimbusds.jwt.SignedJWT;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.jspecify.annotations.NullMarked;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
+
+import com.fitness.gatewayservice.user.UserRequest;
+import com.fitness.gatewayservice.user.UserService;
+import com.nimbusds.jwt.JWTClaimsSet;
+import com.nimbusds.jwt.SignedJWT;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 // @RequiredArgsConstructor helps in auto-injecting the final field

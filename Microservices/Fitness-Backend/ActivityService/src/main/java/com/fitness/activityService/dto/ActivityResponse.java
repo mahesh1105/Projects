@@ -1,8 +1,6 @@
 package com.fitness.activityService.dto;
 
-import com.fitness.activityService.model.Activity;
 import com.fitness.activityService.model.ActivityType;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
