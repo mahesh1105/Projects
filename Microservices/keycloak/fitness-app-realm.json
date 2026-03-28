@@ -1,0 +1,67 @@
+{
+  "realm": "fitness-app",
+  "enabled": true,
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": false,
+  "clients": [
+    {
+      "clientId": "oauth2-pkce-client",
+      "name": "oauth2-pkce-client",
+      "enabled": true,
+      "publicClient": true,
+      "protocol": "openid-connect",
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "implicitFlowEnabled": false,
+      "serviceAccountsEnabled": false,
+      "authorizationServicesEnabled": false,
+      "redirectUris": [
+        "http://localhost:5173/*"
+      ],
+      "webOrigins": [
+        "http://localhost:5173"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:5173/*"
+      },
+      "defaultClientScopes": [
+        "basic",
+        "web-origins",
+        "profile",
+        "roles",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "mahesh",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Mahesh",
+      "lastName": "User",
+      "email": "mahesh@example.com",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "mahesh123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "default-roles-fitness-app"
+      ]
+    }
+  ]
+}
