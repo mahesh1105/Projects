@@ -2,9 +2,11 @@ spring:
   application:
     name: activity-service
   mongodb:
-    uri: mongodb://mongo:mongo@localhost:27017/test?authSource=admin
+    # uri: mongodb://mongo:mongo@localhost:27017/test?authSource=admin
+    uri: mongodb://mongo:mongo@mongo:27017/test?authSource=admin
   kafka:
-    bootstrap-servers: localhost:9092
+    # bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -16,7 +18,8 @@ kafka:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      # defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka-service:8761/eureka/
 
 server:
   port: 8082

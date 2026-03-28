@@ -2,9 +2,11 @@ spring:
   application:
     name: ai-service
   mongodb:
-    uri: mongodb://mongo:mongo@localhost:27017/recom?authSource=admin
+    # uri: mongodb://mongo:mongo@localhost:27017/recom?authSource=admin
+    uri: mongodb://mongo:mongo@mongo:27017/recom?authSource=admin
   kafka:
-    bootstrap-servers: localhost:9092
+    # bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
@@ -27,7 +29,8 @@ gemini:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      # defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka-service:8761/eureka/
 
 server:
   port: 8083
